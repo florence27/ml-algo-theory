@@ -116,7 +116,16 @@
 		\item $P(X = m) = P(X=m,Y=s) + P(X=m,Y=me) + P(X=m,Y=l) = 0.1 + 0.15 + 0.25 = 0.5$
 		\item $P(X = f) = P(X=f,Y=s) + P(X=f,Y=me) + P(X=f,Y=l) = 0.3 + 0.1 + 0.1 = 0.5$
 	\end{itemize}
-	\item[b.)] Beweis.
+	\item[b.)] Proof: Choose a random $\epsilon > 0$. According to the Tchebycheff Inequality, we set $k = \epsilon$ and $X = \overline{X}$. $\overline{X}$ needs to be a random variable within the same distribution as the empirical mean $\overline{x}$. Then the following applies:\newline
+	
+	\noindent $P(|\overline{X} - E(\overline{X})| \geq \epsilon) \leq \frac{Var(\overline{X})}{\epsilon^2}$.\newline
+	
+	\noindent Because $\overline{X} = \frac{\sum_{i=1}^{n} X_i}{n}, E(X_i) = E(X), Var(X_i) = Var(X)$ and since all the $X_i$ are iid, we get:\newline
+	
+	\noindent $E(\overline{X}) = E(\frac{\sum_{i=1}^{n} X_i}{n}) = \frac{\sum_{i=1}^n E(X_i)}{n} = \frac{\sum_{i=1}^n E(X)}{n} = \frac{n \cdot E(X)}{n} = E(X)$.\newline
+	\noindent $Var(\overline{X}) = Var(\frac{\sum_{i=1}^{n} X_i}{n^2}) = \frac{\sum_{i=1}^n Var(X_i)}{n^2} = \frac{\sum_{i=1}^n Var(X)}{n^2} = \frac{n \cdot Var(X)}{n^2} = \frac{Var(X)}{n}$.\newline
+	
+	\noindent Therefore we get the following: $P(|\overline{X} - E(X)| \geq \epsilon) \leq \frac{Var(X)}{n \cdot \epsilon^2}$. The $lim_{n \rightarrow \infty} \frac{Var(X)}{n \cdot \epsilon^2} = 0$. This leads to: $P(|\overline{X} - E(X)| > \epsilon) \leq P(|\overline{X} - E(X)| \geq \epsilon)$, which proves the weak law of large numbers. 
 \end{itemize}
 
 \section*{Exercise 2}
@@ -303,7 +312,37 @@
 
 
 \section*{Exercise 4}
-\section*{Exercise 5}
+\begin{itemize}
+	\item[a.)] \begin{itemize}
+		\item $A = \begin{pmatrix}
+		1 & 0\\
+		0 & 1
+		\end{pmatrix}$ has the independent eigenvectors $u_1 = (1, 0)$ and $u_2 = (0,1)$ and the eigenvalue $\lambda = 1$.
+		\item $B = \begin{pmatrix}
+		1 & 2\\
+		2 & 1
+		\end{pmatrix}$ has the independent eigenvectors $u_1 = (1, 1)$ with eigenvalue $\lambda_1 = 3$ and $u_2 = (-1, 1)$ with eigenvalue $\lambda_2 = -1$.
+		\item $C = \begin{pmatrix}
+		1 & 1\\
+		0 & 1
+		\end{pmatrix}$ has the independent eigenvector $u_1 = (1, 0)$ with eigenvalue $\lambda = 1$. In the case of this matrix, one can observe the following:\begin{itemize}
+			\item $x-axis > 0, y-axis > 0$: $C \cdot x$ is larger than $x$. 
+			\item $x-axis > 0, y-axis < 0$: $C \cdot x$ is smaller than $x$. 
+			\item $x-axis < 0, y-axis < 0$: $C \cdot x$ is larger than $x$. 
+			\item $x-axis < 0, y-axis > 0$: $C \cdot x$ is smaller than $x$. 
+		\end{itemize}
+	\end{itemize}
+	\item[b.)] In the following we will always use this equation: $A \cdot u_i = \lambda_i \cdot I \cdot u_i$. \begin{enumerate} 
+		\item[(1)] $(A + \alpha \cdot I) \cdot u_i = A\cdot u_i + \alpha \cdot I \cdot u_i = \lambda_i \cdot I \cdot u_i + \alpha \cdot I \cdot u_i = \lambda_i \cdot u_i + \alpha \cdot u_i = (\lambda_i + \alpha) \cdot u_i$. This results in the eigenvalue $\lambda_i + \alpha$.
+		\item [(2)] Since $A$ is a symmetric matrix, the following applies: $A^T = A$. This results in $A^T A = AA$. Therefore we have: $AA \cdot u_i = A \cdot (\lambda_i \cdot u_i) = \lambda_i \cdot (A \cdot u_i) = \lambda_i \cdot (\lambda_i \cdot u_i) = \lambda_i^2 \cdot u_i$. This results in the eigenvalue $\lambda_i^2$.
+		\item[(3)] Analogous to (2) $A^T = A$, so this results in the eigenvalue $\lambda_i^2$. 
+		\item[(4)] In general the following applies: $A \cdot u_i = = \lambda_i \cdot u_i$. Now, we multiply $A^{-1}$ to this equation and get: $A^{-1} \cdot A \cdot u_i = \lambda_i \cdot A^{-1} \cdot u_i \Leftrightarrow I \cdot u_i = \lambda_i \cdot A^{-1} \cdot u_i \Leftrightarrow \lambda_i^{-1} \cdot u_i = A^{-1}\cdot u_i$. Therefore the eigenvalues would be $\lambda_i^{-1}$. 
+	\end{enumerate}
+	\item[c.)] A matrix $S$ can be decomposed in the following way: $S = U \cdot D \cdot V^T$. Given $SS^T$ and $S^TS$, the following to equations apply:\newline
+	
+	\noindent $S^TS = (UDV^T)^T \cdot (UDV^T) = VD^TU^T \cdot UDV^T = VD^T \cdot DV^T = V (D^TD) V$\newline
+	\noindent $SS^T = (UDV^T) \cdot (UDV^T)^T = UDV^T \cdot VD^TU^T = UD \cdot D^TU^T = U (D^TD) U$
+\end{itemize}
 
 
 \end{document}

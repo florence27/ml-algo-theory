@@ -105,16 +105,16 @@
 
 \begin{document}
 %\header{Blatt}{Tutor}{Abgabedatum}{Vorlesung}{Bearbeiter}{Semester}{Anzahl Aufgaben}
-\header{1}{}{24. April 2018}{ML: Algo \& Theory}{Florence Lopez (3878792), florence.lopez@student.uni-tuebingen.de \\ Jennifer Them (), jennifer.them@student.uni-tuebingen.de}{SS 18}{5}
+\header{1}{}{24. April 2018}{ML: Algo \& Theory}{Florence Lopez (3878792), florence.lopez@student.uni-tuebingen.de \\ Jennifer Them (3837649), jennifer.them@student.uni-tuebingen.de}{SS 18}{4}
 
 \section*{Exercise 1}
 \begin{itemize}
 	\item[a.)] In the following we will abbreviate small with $s$, medium with $me$, large with $l$, female with $f$ and male with $m$:\begin{itemize}
-		\item $P(Y = s) = P(X=m,Y=s) + P(X=f,Y=s) = 0.1 + 0.3 = 0.4$
-		\item $P(Y = me) = P(X=m,Y=me) + P(X=f,Y=me) = 0.15 + 0.1 = 0.25$
-		\item $P(Y = l) = P(X=m,Y=l) + P(X=f,Y=l) = 0.25 + 0.1 = 0.35$
-		\item $P(X = m) = P(X=m,Y=s) + P(X=m,Y=me) + P(X=m,Y=l) = 0.1 + 0.15 + 0.25 = 0.5$
-		\item $P(X = f) = P(X=f,Y=s) + P(X=f,Y=me) + P(X=f,Y=l) = 0.3 + 0.1 + 0.1 = 0.5$
+		\item $P(Y = s) = P(X=m,Y=s) + P(X=f,Y=s) = 0.1 + 0.3 = 0.4 = 40\%$
+		\item $P(Y = me) = P(X=m,Y=me) + P(X=f,Y=me) = 0.15 + 0.1 = 0.25 = 25\%$
+		\item $P(Y = l) = P(X=m,Y=l) + P(X=f,Y=l) = 0.25 + 0.1 = 0.35 = 35\%$
+		\item $P(X = m) = P(X=m,Y=s) + P(X=m,Y=me) + P(X=m,Y=l) = 0.1 + 0.15 + 0.25 = 0.5 = 50\%$
+		\item $P(X = f) = P(X=f,Y=s) + P(X=f,Y=me) + P(X=f,Y=l) = 0.3 + 0.1 + 0.1 = 0.5 = 50\%$
 	\end{itemize}
 	\item[b.)] Proof: Choose a random $\epsilon > 0$. According to the Tchebycheff Inequality, we set $k = \epsilon$ and $X = \overline{X}$. $\overline{X}$ needs to be a random variable within the same distribution as the empirical mean $\overline{x}$. Then the following applies:\newline
 	
@@ -139,8 +139,8 @@
 		\noindent $P(B=c) = 0.01$
 		\item $P(B=c|A=+) = \frac{P(A=+|B=c) \cdot P(B=c)}{P(A=+)}$
 		\item $P(A=+)$ can be calculated with marginalisation:\newline
-		\noindent $P(A=+) = P(A=+|B=c) \cdot P(B=c) + P(A=+|B=\not c) \cdot P(B=\not c)$, with $P(A=+|B=\not c)$ being 0.05. This results in $P(A=+) = 0.95 \cdot 0.01 + 0.05 \cdot 0.99 = 0.059$
-		\item This results in: $P(B=c|A=+) = \frac{0.95 \cdot 0.01}{0.059} = 0.16$
+		\noindent $P(A=+) = P(A=+|B=c) \cdot P(B=c) + P(A=+|B=\not c) \cdot P(B=\not c)$, with $P(A=+|B=\not c)$ being 0.05. This results in $P(A=+) = 0.95 \cdot 0.01 + 0.05 \cdot 0.99 = 0.059 = 5.9\%$
+		\item This results in: $P(B=c|A=+) = \frac{0.95 \cdot 0.01}{0.059} = 0.16 = 16\%$
 	\end{itemize}
 \end{itemize}
 

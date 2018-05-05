@@ -109,5 +109,59 @@
 
 \section*{Exercise 1}
 
+\begin{itemize}
+	\item[a.)] Compute the derivative $\frac{\delta f}{\delta X}$, where $X = \begin{bmatrix}
+	x_1\\
+	x_2\\
+	x_3
+	\end{bmatrix}$:\newline
+	\noindent $f(X) = a^T X  = \begin{bmatrix}
+	2 & -1 & 5
+	\end{bmatrix} \cdot \begin{bmatrix}
+	x_1\\
+	x_2\\
+	x_3
+	\end{bmatrix} = 2x_1 - x_2 + 5x_3$.\newline
+	
+	\noindent $\frac{\delta f}{\delta X} f(X) = \begin{bmatrix}
+	\frac{\delta f}{\delta x_1} & \frac{\delta f}{\delta x_2} & \frac{\delta f}{\delta x_3}
+	\end{bmatrix}$ with $\frac{\delta f}{\delta x_1} = 2$, $\frac{\delta f}{\delta x_2} = -1$, $\frac{\delta f}{\delta x_3} = 5$.\newline 
+	This leads to $\frac{\delta f}{\delta X} = \begin{bmatrix}
+	2 & -1 & 5 
+	\end{bmatrix} = a^T$.
+	
+	\item[b.)] Compute the derivative $\frac{\delta f}{\delta X}$, where $X = \begin{bmatrix}
+	x_1\\
+	x_2
+	\end{bmatrix}$:\newline
+	\noindent $f(X) = X^T AX  = \begin{bmatrix}
+	x_1& x_2
+	\end{bmatrix} \cdot \begin{pmatrix}
+	1 & 2\\
+	5 & 3
+	\end{pmatrix} \cdot \begin{bmatrix}
+	x_1\\
+	x_2
+	\end{bmatrix}  = \begin{bmatrix}
+	x_1& x_2
+	\end{bmatrix} \cdot \begin{pmatrix}
+	x_1 + 2x_2\\
+	5x_1 + 3x_2
+	\end{pmatrix} = x_1^2 + 3x_2^2 + 7x_1 x_2$.\newline
+	
+	\noindent $\frac{\delta f}{\delta X} f(X) = \begin{bmatrix}
+	\frac{\delta f}{\delta x_1} & \frac{\delta f}{\delta x_2}
+	\end{bmatrix} = \begin{bmatrix}
+	2x_1 + 7x_2 & 7x_1 + 6x_2
+	\end{bmatrix} = \begin{bmatrix}
+	x_1 & x_2
+	\end{bmatrix} \cdot \begin{pmatrix}
+	2 & 7\\
+	7 & 6
+	\end{pmatrix} = x^T \cdot (A + A^T)$.
+\end{itemize}
+
+\section*{Exercise 2}
+
 
 \end{document}

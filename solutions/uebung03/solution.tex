@@ -163,5 +163,108 @@
 
 \section*{Exercise 2}
 
+\begin{itemize}
+	\item[a.)] We have to show that $X^tX$ is positive semidefinite and that rank($X^tX$) = rank($X$). 
+	\begin{enumerate}
+		\item[1.] A matrix $X$ is positive semidefinite, if for all $v \in \mathbb{R}^n$ the following holds: $v^t X v \geq 0$. In this case we will need $v^t X^tX v \geq 0$. Since $v^t X^t = X v$, we will have to prove that $X v X v \geq 0$. $X v X v \geq 0 \Leftrightarrow \langle Xv, Xv\rangle \geq 0$. The multiplication of $v^t X^t$ gives us an $1xn$ vector and the multiplication of $X v$ gives us an $nx1$ vector. Therefore we will have a single value at the end of the whole multiplication. The scalar product of $\langle Xv, Xv\rangle$ equals $|| Xv||^2$, which will always be $\geq 0$, since all values of $Xv$ multiplied with $Xv$ will be positive, even if the single entries of $Xv$ are negative. Therefore $X^tX$ is a positive semidefinite matrix.
+		\item[2.] rank($X^t X$) = rank($X$). This relation is called the rank-nullity theorem. 
+		\end{enumerate}
+	\item[b.)] We have to show that $X(\omega^* - \omega_0) = 0$ with $\omega_0 = (X^tX)^+X^tY$. To show this, we have to show that $\omega^* = \omega_0$, because this would be the solution to $X(\omega^* - \omega_0) = 0$. Since $\omega^*$ is the optimal solution for the regression problem, we have to show that $\min_\omega|| Y - X\omega||^2 = (X^tX)^+X^tY$. To show this, we will compute the derivative of $|| Y - X\omega||^2$ in the following steps: 
+	\begin{enumerate}
+		\item[1.] $|| Y - X\omega||^2$ can be represented in matrix notation: $(Y - X\omega)^t \cdot (Y - X\omega) \Leftrightarrow (Y^t - X^t\omega^t) \cdot (Y - X\omega) \Leftrightarrow Y^t Y - \omega^t X^t Y - Y^t X \omega + \omega^t X^t X \omega \Leftrightarrow Y^t Y - 2\omega^t X^t Y + \omega^t X^t X \omega$. The last step could take place, because of the following equation: $\omega^t X^t Y = (\omega^t X^t Y)^t = Y^t X \omega$.
+		\item[2.] To find the optimal solution, we have to derivate the above equation: $\frac{\delta}{\delta\omega} Y^t Y - 2\omega^t X^t Y + \omega^t X^t X \omega$. We will split up this equation in 2 parts and derive them.
+		\item[3.] First part: $\frac{\delta}{\delta \omega} \omega^t X^t Y = \frac{\delta}{\delta \omega} Y^t X \omega = Y^t X = X^t Y$.
+		\item[4.] Second part: $\frac{\delta}{\delta \omega} \omega^t X^t X \omega = \frac{\delta}{\delta \omega} \omega^t X^t + \frac{\delta}{\delta \omega} X\omega = X^t X\omega + X X^t \omega^t = 2 X^t X \omega$, because $X X^t \omega^t = X^t X \omega$.
+		\item[5.] If we put all parts together, we get the overall derivation and set it to zero:\newline
+		\noindent $\frac{\delta}{\delta \omega} Y^t Y - 2\omega^t X^t Y + \omega^t X^t X \omega = 0 \Leftrightarrow -2 X^t Y + 2 X^t X \omega = 0\Leftrightarrow 2 X^t X \omega = 2 X^t Y \Leftrightarrow X^t X \omega = X^t Y \Leftrightarrow \omega = (X^t X)^+ X^t Y$, which is the solution for $\omega_0$.
+	\end{enumerate}
+	\noindent Therefore one can say that $\omega^* = \omega_0 = (X^t X)^+ X^t Y$, which leads to $X(\omega^* - \omega_0) = 0$.
+	\item[c.)] -
+\end{itemize}
+
+\section*{Exercise 3}
+
+\begin{itemize}
+	\item[a.)] Inserting all 4 $X, Y$-pairs we get the following LGS with 4 equations and $\omega = \begin{bmatrix}
+	\omega_1\\
+	\omega_2\\
+	\omega_3
+	\end{bmatrix}$:\newline\noindent 
+	\begin{align*}
+	\text{I)} && \omega_1 + \omega_2 &= 3 &&\\
+	\text{II)} && \omega_1 - \omega_2 + 2\omega_3&= 1 &&\\
+	\text{III)} && 2\omega_1 + 3\omega_2 - \omega_3&= 7 &&\\
+	\text{IV)} && -\omega_1 + 2\omega_2 - 3\omega_3&= 0 &&\\[-1.7ex]
+	\cline{1-6}
+	\text{I)} && 3 - \omega_1&=\omega_2 &&\\
+	\text{$\omega_2$ in II)} && \omega_1 - (3 -\omega_1) + 2\omega_3&= 1\\
+	\text{$\Leftrightarrow$} && 2\omega_1 + 2\omega_3&= 4\\
+	\text{$\Leftrightarrow$} && 2 - \omega_1&= \omega_3&&\\[-1.7ex]
+	\cline{1-6}
+	\text{$\omega_2, \omega_3$ in III)} &&  2\omega_1 + 3(3 - \omega_1) - (2 - \omega_1)&= 7\\
+	\text{$\Leftrightarrow$} && 2 \omega_1 + 9 - 3\omega_1 - 2 \omega_1&=7\\
+	\text{$\Leftrightarrow$} && 2 \omega_1 - 3\omega_1 + \omega_1&= 0\\
+	\text{$\Leftrightarrow$} && 0&= 0\\
+	\end{align*} 
+	\noindent This means that $\omega_1$ can be chosen freely. We chose $\omega_1 = 1$, which leads to $\omega_2 = 2$ and $\omega_3 = 1$ and therefore we have $\omega = \begin{bmatrix}
+	1\\
+	2\\
+	1
+	\end{bmatrix}$ as first optimal solution. We can obtain other optimal solutions, since we can chose $\omega_1$ freely. We also chose the $\omega_1 = 2$, which led to $\omega_2 = 1$ and $\omega_3 = 0$. The last optimal solution we obtained was with $\omega_1 = 3$, which led to $\omega_2 = 0$ and $\omega_3 = -1$. So we obtain 3 different optimal solutions:\newline
+	\noindent $\omega^1 = \begin{bmatrix}
+	1\\
+	2\\
+	1
+	\end{bmatrix}, \omega^2 = \begin{bmatrix}
+	2\\
+	1\\
+	0
+	\end{bmatrix}$ and $\omega^3 = \begin{bmatrix}
+		3\\
+		0\\
+		-1
+	\end{bmatrix}$.
+	\item[b.)] Predicting $\hat{Y}$ with $X_5 = (0, 2, -2)$:
+	\begin{itemize}
+		\item $\omega^1$: $\hat{Y} = X_5 \cdot \omega^1 = (0, 2, -2) \cdot \begin{bmatrix}
+		1\\
+		2\\
+		1
+		\end{bmatrix} = 2$.
+		\item $\omega^2$: $\hat{Y} = X_5 \cdot \omega^2 = (0, 2, -2) \cdot \begin{bmatrix}
+		2\\
+		1\\
+		0
+		\end{bmatrix} = 4$.
+		\item $\omega^2$: $\hat{Y} = X_5 \cdot \omega^3 = (0, 2, -2) \cdot \begin{bmatrix}
+		3\\
+		0\\
+		-1
+		\end{bmatrix} = 2$
+	\end{itemize}
+
+	\noindent Predicting $\hat{Y}$ with $X_6 = (1, 0, 0)$:
+	\begin{itemize}
+		\item $\omega^1$: $\hat{Y} = X_6 \cdot \omega^1 = (1, 0, 0) \cdot \begin{bmatrix}
+		1\\
+		2\\
+		1
+		\end{bmatrix} = 0$.
+		\item $\omega^2$: $\hat{Y} = X_6 \cdot \omega^2 = (1, 0, 0) \cdot \begin{bmatrix}
+		2\\
+		1\\
+		0
+		\end{bmatrix} = 2$.
+		\item $\omega^2$: $\hat{Y} =X_6 \cdot \omega^3 = (1, 0, 0) \cdot \begin{bmatrix}
+		3\\
+		0\\
+		-1
+		\end{bmatrix} = 3$
+	\end{itemize}
+
+	\noindent The predictions do not match, because we found the optimal solutions based on the freely chosen $\omega_1$, therefore the solutions are not the same for the 3 different optimal solutions found in (a).
+	\item[c.)] 
+\end{itemize}
+
 
 \end{document}

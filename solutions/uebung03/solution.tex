@@ -263,8 +263,38 @@
 	\end{itemize}
 
 	\noindent The predictions do not match, because we found the optimal solutions based on the freely chosen $\omega_1$, therefore the solutions are not the same for the 3 different optimal solutions found in (a).
-	\item[c.)] 
+	\item[c.)] Inserting all 4 $X, Y$-pairs we get the following LGS with 4 equations and $\omega = \begin{bmatrix}
+	\omega_1\\
+	\omega_2\\
+	\omega_3
+	\end{bmatrix}$:\newline\noindent
+	\begin{align*}
+	\text{I)} && 2\omega_1^2 + 2\omega_2^2 + \omega_3^2 &= 3 &&\\
+	\text{II)} && 2\omega_1^2 + 3\omega_3^2&= 1 &&\\
+	\text{III)} && 3\omega_1^2 + 4\omega_2^2&= 7 &&\\
+	\text{IV)} && 3\omega_2^2 - 2\omega_3^2&= 0 &&\\[-1.7ex]
+	\cline{1-6}
+	\text{II)} && 2\omega_1^2 + 3\omega_3^2&=1&&\\
+	\text{$\Leftrightarrow$} && \frac{1 - 2\omega_1^2}{3}&= \omega_3^2\\
+	\text{$\omega_3^2$ in IV)} && 3\omega_2^2 - 2 \cdot (\frac{1 - 2\omega_1^2}{3})&= 0\\
+	\text{$\Leftrightarrow$} && \frac{2}{3} + \frac{4}{3} \cdot \omega_1^2&= 3\omega_2^2\\
+	\text{$\Leftrightarrow$} && \frac{2}{9} + \frac{4}{9} \cdot \omega_1^2&= \omega_2^2&&\\[-1.7ex]
+	\cline{1-6}
+	\text{$\omega_2^2, \omega_3^2$ in I)} &&  2\omega_1^2 + 2 \cdot (\frac{2}{9} + \frac{4}{9} \cdot \omega_1^2) + \frac{1 - 2\omega_1^2}{3}&= 3\\
+	\text{$\Leftrightarrow$} && \frac{20}{9} \omega_1^2&=\frac{20}{9}\\
+	\text{$\Leftrightarrow$} && \omega_1^2&= 1\\
+	\text{$\Leftrightarrow$} && \omega_1&= 1\\
+	\end{align*} 
+	
+	\noindent This leads to $\omega_2 = \sqrt{\frac{1}{3}} \approx 0.58$ and $\omega_3 = \sqrt{\frac{-1}{3}} = \frac{i}{\sqrt{3}}$, which leads to $\omega = \begin{bmatrix}
+	1\\
+	0.58\\
+	\frac{i}{\sqrt{3}}
+	\end{bmatrix}$ as an optimal solution for the ridge regression problem.
 \end{itemize}
+
+\section*{Exercise 4}
+See code. 
 
 
 \end{document}

@@ -109,5 +109,22 @@
 
 \section*{Exercise 1}
 
+\begin{itemize}
+	\item[a.)] see source code.
+	\item[b.)] see source code.
+	\item[c.)] see source code.
+	\item[d.)] see source code. The pattern one can notice is that if the validation error rises the test error rises, too. This is due to the fact that the validation error gives us the best parameter for our model. So if the validation error gets bigger for a certain parameter, this means that this specific parameter doesn't suit so well for our dataset. Therefore it is just logical that our test error gets bigger for the same parameter.
+	\item[e.)] see source code.
+\end{itemize}
+
+\section*{Exercise 2}
+
+\begin{itemize}
+	\item[a.)] see source code.
+	\item[b.)] see source code. Cross validation doesn't always select the best possible $\lambda$. We had some runs where the cross validation suggested that a specific $\lambda$ would be the best, but the test error showed that another $\lambda$ would lead to an even lower test error.
+	\item[c.)] see source code. Cross validation selects the best $\lambda$, since the test error acts proportionally to the cross validation error and therefore a low cross validation error for a specific $\lambda$ means that the test error for this specific $\lambda$ is low, too.  
+	\item[d.)] One can observe that cross-validation seems to work best for the Lasso regression and seems not to work so well for ridge regression. For the ridge regression it seems that changing $\lambda$ doesn't have such a great impact on the test error. On the other side for Lasso regression $\lambda$ seems to have a huge impact on the test error. 
+\end{itemize}
+
 
 \end{document}

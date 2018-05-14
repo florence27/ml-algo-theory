@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage{geometry}
 \geometry{a4paper,tmargin=2.3cm,bmargin=2.3cm,lmargin=3cm,rmargin=3cm}
+\usepackage{graphicx}
 
 
 \begin{document}
@@ -21,9 +22,9 @@
 \vspace{10mm}
 \textbf{Ridge Regression}
 
-\textsc{understanding:} 
+\textsc{understanding:} Assume you have a test dataset with small variances between the testpoints and you expect that the distribution of this data follows a complex polynomial. How would you choose the parameter $\lambda$? 
 
-\textsc{transferring:}
+\textsc{answer:} You would have to choose a small $\lambda$, since $\lambda$ is a regularization parameter and therefore it punishes complex functions harder than less complex functions. But since you assume that your data is following a complex polynomial, you would want to include also complex polynomials and therefore you would need them to not be punished that hard.
 
 
 
@@ -31,9 +32,14 @@
 \textbf{ERM and RRM framework}
 
 \textsc{understanding:} 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{erm.png}
+\end{figure}
 
-\textsc{transferring:}
+\noindent In the above illustration which curve represents the approximation error and which represents the estimation error? Explain why! 
 
+\textsc{answer:} The approximation error is the discrepancy between your best function in a certain Function class and the Bayes classifier. If the Function class gets bigger than the approximation error gets smaller, because it is more likely the true best function, namely the Bayes classifier lies within your Function class. Therefore the green curve shows the approximation error. On the other side the estimation error is the dicrepancy between the function learned by your algorithm and the best function within the Function class. Therefore it gets bigger if the Function class gets bigger, too. This is why the red curve shows the estimation error. 
 
 \end{document}
 

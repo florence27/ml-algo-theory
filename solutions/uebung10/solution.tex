@@ -1,0 +1,127 @@
+%!TEX TS-options = --shell-escape
+%!TEX TS-program = pdflatex
+\documentclass[%
+   10pt,              % Schriftgroesse
+                 % wird an andere Pakete weitergereicht
+   a4paper,           % Seitengroesse
+   DIV10,             % Textbereichsgroesse (siehe Koma Skript Dokumentation !)
+]{scrartcl}%     Klassen: scrartcl, scrreprt, scrbook, article
+% -------------------------------------------------------------------------
+
+\usepackage[utf8]{inputenc} % Font Encoding, benoetigt fuer Umlaute
+%\usepackage[ngerman]{babel}   % Spracheinstellung
+
+
+\usepackage{ulem}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{multirow}
+\usepackage{listings}
+\usepackage{ifthen}
+\usepackage{todonotes}
+\usepackage{mathtools}
+\usetikzlibrary{automata,arrows}
+
+
+% Definition des Headers
+\usepackage{geometry}
+\geometry{a4paper, top=3cm, left=3cm, right=3cm, bottom=3cm, headsep=0mm, footskip=0mm}
+\renewcommand{\baselinestretch}{1.3}\normalsize
+\renewcommand{\labelenumi}{\alph{enumi})}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\def\header#1#2#3#4#5#6#7{\pagestyle{empty}
+\noindent
+\begin{minipage}[t]{0.6\textwidth}
+\begin{flushleft}
+\textbf{#4}\\% Fach
+#6\\% Semester
+#2  % Tutor 
+\end{flushleft}
+\end{minipage}
+\begin{minipage}[t]{0.4\textwidth}
+\begin{flushright}
+\points{#7}% Punktetabelle
+\vspace*{0.2cm}
+#5%  Names
+\end{flushright}
+\end{minipage}
+
+\begin{center}
+{\Large\textbf{ Assignment #1}} % Blatt
+
+{(Abgabe am #3)} % Abgabedatum
+\end{center}
+}
+
+\newenvironment{vartab}[1]
+{
+    \begin{tabular}{ |c@{} *{#1}{c|} } %\hline
+}{
+    \end{tabular}
+}
+
+\newcommand{\myformat}[1]{& #1}
+
+\newcommand{\entry}[1]{
+  \edef\result{\csvloop[\myformat]{#1}}
+  \result \\ \hline
+}
+
+\newcommand{\numbers}[1]{
+  \newcounter{ctra}
+\setcounter{ctra}{1}
+\whiledo {\value{ctra} < #1}%
+{%
+  \myformat{\thectra}
+  \stepcounter{ctra}%
+}
+\myformat{\thectra}
+}
+\newcommand{\emptyLine}[1]{
+  \newcounter{ctra1}
+\setcounter{ctra}{1}
+\whiledo {\value{ctra1} < #1}%
+{%
+  \myformat{\hspace*{0.5cm}}
+  \stepcounter{ctra1}%
+}
+}
+
+
+\newcommand{\points}[1]{
+\newcounter{colmns}
+\setcounter{colmns}{#1}
+\stepcounter{colmns}
+  \begin{vartab}{\thecolmns}
+    \numbers{#1} & $\sum$\\\hline
+    \emptyLine{\thecolmns}\\
+  \end{vartab}
+
+}
+
+\begin{document}
+%\header{Blatt}{Tutor}{Abgabedatum}{Vorlesung}{Bearbeiter}{Semester}{Anzahl Aufgaben}
+\header{10}{}{03. Juli 2018}{ML: Algo \& Theory}{Florence Lopez (3878792), florence.lopez@student.uni-tuebingen.de \\ Jennifer Them (3837649), jennifer.them@student.uni-tuebingen.de}{SS 18}{3}
+
+\section*{Exercise 1}
+\begin{itemize}
+	\item[a.)] We have to prove that $\lambda_n \leq 2$. From the Rayleigh principle we know that $\lambda_n = \max_v v^T L v$, where $v \in \mathbb{R}^n$ is normalized, meaning that is has length = 1. Because $L$ is a normalized Laplacian, we get the following equations:\\
+	\noindent $v^T L v = \frac{1}{2} \sum_{i, j = 1}^{n} a_{ij} (\frac{v_i}{\sqrt{d_i}} - \frac{v_j}{\sqrt{d_j}})^2$\\
+	\noindent $ = \frac{1}{2} \sum_{i, j = 1}^{n} a_{ij} ((\frac{v_i}{\sqrt{d_i}})^2 - 2\frac{v_i}{\sqrt{d_i}}\frac{v_j}{\sqrt{d_j}} + (\frac{v_j}{\sqrt{d_j}})^2)$ $ = \frac{1}{2} \sum_{i, j = 1}^{n} a_{ij} (\frac{v_i^2}{d_i} - 2\frac{v_i v_j}{\sqrt{d_i d_j}} + \frac{v_j^2}{d_j})$\\
+	\noindent $ = \frac{1}{2} \sum_{i, j = 1}^{n} a_{ij} \frac{v_i^2}{d_i} - \sum_{i,j = 1}^{n} a_{ij} \frac{v_i v_j}{\sqrt{d_i d_j}} +  \frac{1}{2} \sum_{i,j=1}^{n} a_{ij} \frac{v_j^2}{d_j}$ $ = \sum_{i = 1}^{n} (\sum_{j = 1}^{n} a_{ij}) \frac{v_i^2}{d_i} - \sum_{i,j = 1}^{n} a_{ij} \frac{v_i v_j}{\sqrt{d_i d_j}}$\\
+	$ = \sum_{i = 1}^{n} v_i^2 - \sum_{i,j = 1}^{n} a_{ij} \frac{v_i v_j}{\sqrt{d_i d_j}}$ $ = 1 - \sum_{i,j = 1}^{n} \frac{a_{ij} }{\sqrt{d_i d_j}} v_i v_j$.\\
+	\noindent Since $v$ is normalized, the following to relations hold: $-1 \leq v \leq 1$ and $-1 \leq v_iv_j \leq 1$. We can now assume that $\sum_{i,j = 1}^{n} \frac{a_{ij} }{\sqrt{d_i d_j}} \leq 1$, since the sum of the adjacency entries is divided by other sums of the same value. By multiplying $\sum_{i,j = 1}^{n} \frac{a_{ij} }{\sqrt{d_i d_j}}$ with some number $v_i v_j$ between -1 and 1, we would still get a number between -1 and 1, leading to $\sum_{i,j = 1}^{n} \frac{a_{ij} }{\sqrt{d_i d_j}} v_i v_j \geq -1$. With all those relations, we can now conclude that:\\ 
+	\noindent$\lambda_n = \max_v v^T L v = \max_v 1 - \sum_{i,j = 1}^{n} \frac{a_{ij} }{\sqrt{d_i d_j}} \leq 1 - (-1) = 2$. 
+	\item[b.)] If $G$ is a complete graph on $n$ vertices, we have $A = 1 - I$, which is a matrix that has 1 in every entry, except on the diagonal. Then $D = diag(n-1, \dots, n-1)$, which leads to $D - A$ being $(n-1)$ on the diagonal and -1 everywhere else. If we multiply $D^{-\frac{1}{2}}$ on the left and on the right, we divide each entry by $(n-1)$, which leads to $L$ being $1$ on the diagonal and $\frac{-1}{n-1}$ everywhere else.\\
+	\noindent If we set the eigenvector $v_1$ to $(1, \dots, 1)$, we get $L v_1 = 0 v_1$
+	\item[c.)] 
+	\item[d.)] 
+\end{itemize}
+\section*{Exercise 2}
+see code. 
+\section*{Exercise 3}
+\end{document}
